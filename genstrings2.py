@@ -12,6 +12,7 @@ opt_append = False
 opt_target = "Base.lproj"
 opt_files = []
 opt_routine = "NSLocalizedString"
+opt_table = "Localizable"
 
 i = 1
 while i < len(sys.argv):
@@ -22,6 +23,9 @@ while i < len(sys.argv):
     i += 1
   elif(sys.argv[i] == "-s"):
     opt_routine = sys.argv[i + 1]
+    i += 1
+  elif(sys.argv[i] == "-t"):
+    opt_table = sys.argv[i + 1]
     i += 1
   else:
     opt_files.append(sys.argv[i])
@@ -86,7 +90,7 @@ def readNSString(f):
   return ret
 
 # Strings file path
-pathStrings = opt_target + "/Localizable.strings"
+pathStrings = opt_target + "/" + opt_table + ".strings"
 
 # If a strings file already exists, parse it so we can use the old values for the new file
 oldStrings = {}
